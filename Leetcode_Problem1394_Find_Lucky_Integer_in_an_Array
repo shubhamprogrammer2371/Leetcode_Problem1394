@@ -1,0 +1,46 @@
+int findLucky(int* arr, int arrSize) {
+    int* arr_temp = malloc(sizeof(int)*501);
+    memset(arr_temp, 0, 501*sizeof(int));
+    for( int i = 0 ; i < arrSize ; i++)
+        arr_temp[arr[i]]++;
+    for( int i = 500 ; i > 0 ; i--)
+    {
+        if(i == arr_temp[i])
+        {
+            free(arr_temp);
+            return i;
+        } 
+    }
+    return -1;
+}
+
+
+
+-----------------------------------------------------------------------------------------------------
+
+
+int findLucky(int* arr, int arrSize){
+    int* count = calloc(501, sizeof(int));
+    for (size_t i = 0; i < arrSize; i++)
+        count[arr[i]]++;
+    for (size_t i = 500; i > 0; i--)
+        if (count[i] == i)
+            return i;
+    return -1;
+}
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+int findLucky(int* arr, int arrSize){
+    int a[1000] = {0} , j , k = -1;
+    for(int i = 0 ; i < arrSize ; i++)
+    {
+        j = arr[i];
+        a[j-1]++;
+    }
+    for(int i = 0 ; i < 1000 ; i++)
+        k = (a[i] == i+1) ? a[i] : k;
+    return k;
+}
